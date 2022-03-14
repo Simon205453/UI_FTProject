@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <title>Title</title>
+    <link rel="stylesheet" href="index.css">
+    <!-- link virker ikke.. Lidt irriterende ngl -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Comic Sans MS";
+        }
+
+        :root {
+            --clr: #222327;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column-reverse;
+            justify-content: space-between;
+            align-items: center;
+            min-height: 100vh;
+            background: var(--clr);
+        }
+
+        .navigation {
+            width: 800px;
+            height: 70px;
+            background: #fff;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 10px;
+        }
+
+        .navigation ul {
+            display: flex;
+            width: 700px;
+        }
+
+        .navigation ul li {
+            position: relative;
+            list-style: none;
+            width: 140px;
+            height: 70px;
+            z-index: 1;
+        }
+
+        .navigation ul li a {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            width: 100%;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .navigation ul li a .icon {
+            position: relative;
+            display: block;
+            line-height: 75px;
+            font-size: 2em;
+            text-align: center;
+            transition: 0.5s;
+            color: var(--clr);
+        }
+
+        .navigation ul li.active a .icon {
+            transform: translateY(-35px);
+        }
+
+        .navigation ul li a .text {
+            position: absolute;
+            color: var(--clr);
+            font-weight: 400;
+            font-size: 1.5em;
+            letter-spacing: 0.05em;
+            transition: 0.5s;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .navigation ul li.active a .text {
+            opacity: 1;
+            transform: translateY(10px);
+        }
+
+        .indicator {
+            position: absolute;
+            top: -50%;
+            width: 140px;
+            height: 70px;
+            background: green;
+            border-radius: 50%;
+            border: 6px solid var(--clr);
+            transition: 0.5s;
+            opacity: 1;
+        }
+
+
+        .indicator::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: -20px;
+            width: 20px;
+            height: 20px;
+            background: none;
+            border-top-right-radius: 20px;
+            box-shadow: 0px -10px 0 0 var(--clr);
+        }
+
+        .indicator::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: -20px;
+            width: 20px;
+            height: 20px;
+            background: none;
+            border-top-left-radius: 20px;
+            box-shadow: 0px -10px 0 0 var(--clr);
+        }
+
+        .navigation ul li:nth-child(1).active ~ .indicator {
+            transform: translateX(calc(140px * 0));
+        }
+
+        .navigation ul li:nth-child(2).active ~ .indicator {
+            transform: translateX(calc(140px * 1));
+        }
+
+        .navigation ul li:nth-child(3).active ~ .indicator {
+            transform: translateX(calc(140px * 2));
+        }
+
+        .navigation ul li:nth-child(4).active ~ .indicator {
+            transform: translateX(calc(140px * 3));
+        }
+
+        .navigation ul li:nth-child(5).active ~ .indicator {
+            transform: translateX(calc(140px * 4));
+        }
+
+        /* -------------------------------------------------------------------------------- skille linje -------------------- */
+        .navigation1 {
+            width: 800px;
+            height: 70px;
+            background: #fff;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 10px;
+        }
+
+        .navigation1 ul {
+            display: flex;
+            width: 700px;
+        }
+
+        .navigation1 ul li {
+            position: relative;
+            list-style: none;
+            width: 140px;
+            height: 70px;
+            z-index: 1;
+        }
+
+        .navigation1 ul li a {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            width: 100%;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .navigation1 ul li a .icon1 {
+            position: relative;
+            display: block;
+            line-height: 75px;
+            font-size: 2em;
+            text-align: center;
+            transition: 0.5s;
+            color: var(--clr);
+        }
+
+        .navigation1 ul li.active a .icon1 {
+            transform: translateY(35px);
+        }
+
+        .navigation1 ul li a .text1 {
+            position: absolute;
+            color: var(--clr);
+            font-weight: 400;
+            font-size: 1.5em;
+            letter-spacing: 0.05em;
+            transition: 0.5s;
+            opacity: 0;
+            transform: translateY(-30px);
+        }
+
+        .navigation1 ul li.active a .text1 {
+            opacity: 1;
+            transform: translateY(-20px);
+        }
+
+        .indicator1
+        {
+            position: absolute;
+            top: 50%;
+            width: 140px;
+            height: 70px;
+            background: green;
+            border-radius: 50%;
+            border: 6px solid var(--clr);
+            transition: 0.5s;
+            opacity: 1;
+        }
+        .indicator1::before
+        {
+            content: '';
+            position: absolute;
+            top: 15%;
+            left: -20px;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-bottom-right-radius: 20px;
+            box-shadow: 0px 10px 0 0 var(--clr);
+        }
+        .indicator1::after
+        {
+            content: '';
+            position: absolute;
+            top: 15%;
+            right: -20px;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-bottom-left-radius: 20px;
+            box-shadow: 0px 10px 0 0 var(--clr);
+        }
+
+        .navigation1 ul li:nth-child(1).active ~ .indicator {
+            transform: translateX(calc(140px * 0));
+            opacity: 0;
+
+        }
+
+        .navigation1 ul li:nth-child(2).active ~ .indicator1 {
+            transform: translateX(calc(140px * 1));
+        }
+
+        .navigation1 ul li:nth-child(3).active ~ .indicator1 {
+            transform: translateX(calc(140px * 2));
+        }
+
+        .navigation1 ul li:nth-child(4).active ~ .indicator1 {
+            transform: translateX(calc(140px * 3));
+        }
+
+        .navigation1 ul li:nth-child(5).active ~ .indicator1 {
+            transform: translateX(calc(140px * 4));
+        }
+
+    </style>
+
+</head>
+<body>
+<div class="navigation">
+    <ul>
+        <li class="list">
+            <a href="#">
+                    <span class="icon">
+                        <ion-icon name="call-outline"></ion-icon>
+                    </span>
+                <span class="text">Call</span>
+            </a>
+        </li>
+        <li class="list">
+            <a href="#">
+                    <span class="icon">
+                    <ion-icon name="chatbubble-outline"></ion-icon>
+                    </span>
+                <span class="text">Message</span>
+            </a>
+        </li>
+        <li class="list active">
+            <a href="#">
+                <span class="icon">
+                        <ion-icon name="home-outline"></ion-icon>
+                    </span>
+                <span class="text">Home</span>
+
+            </a>
+        </li>
+        <li class="list">
+            <a href="#">
+                <span class="icon">
+                    <ion-icon name="camera-outline"></ion-icon>
+                </span>
+                <span class="text">Photos</span>
+            </a>
+        </li>
+        <li class="list">
+            <a href="#">
+                <span class="icon">
+                    <ion-icon name="settings-outline"></ion-icon>
+                </span>
+                <span class="text">Settings</span>
+            </a>
+        </li>
+        <div class="indicator"></div>
+    </ul>
+
+</div>
+
+<!-- ---------------------------- merge tester ----------------------------- -->
+
+<!-- ---------------skille linje----------------- -->
+<div class="navigation1">
+    <ul>
+        <li class="list1">
+            <a href="#">
+                    <span class="icon1">
+                        <ion-icon name="power-outline"></ion-icon>
+                    </span>
+                <span class="text1">Turn off</span>
+            </a>
+        </li>
+        <li class="list1">
+            <a href="#">
+                   <span class="icon1">
+                        <ion-icon name="at-outline"></ion-icon>
+                    </span>
+                <span class="text1">Mentions</span>
+            </a>
+        </li>
+        <li class="list1">
+            <a href="#">
+                <span class="icon1">
+                        <ion-icon name="person-outline"></ion-icon>
+                    </span>
+                <span class="text1">Me</span>
+            </a>
+        </li>
+        <li class="list1">
+            <a href="#">
+                <span class="icon1">
+                    <ion-icon name="cellular-outline"></ion-icon>
+                </span>
+                <span class="text1">Coverage</span>
+            </a>
+        </li>
+        <li class="list1">
+            <a href="#">
+                <span class="icon1">
+                    <ion-icon name="battery-full-outline"></ion-icon>
+                </span>
+                <span class="text1">Battery</span>
+            </a>
+        </li>
+        <div class="indicator1"></div>
+    </ul>
+</div>
+<script>
+    const list = document.querySelectorAll('.list');
+    const list1 = document.querySelectorAll('.list1');
+    const indicator = document.querySelectorAll('.indicator');
+    const indicator1 = document.querySelectorAll('.indicator1');
+
+    function activator() {
+        list.forEach((item) => item.classList.remove('active'));
+        list1.forEach((item) => item.classList.remove('active'));
+        indicator.forEach((item) => item.classList.remove('active'));
+        indicator1.forEach((item) => item.classList.remove('active'));
+        this.classList.add('active');
+    }
+    function hideIndicator(){
+        indicator.style.opacity = "0";
+    }
+    function hideIndicator1(){
+        indicator1.style.opacity = "0";
+    }
+    function showIndicator(){
+        indicator.style.opacity = "1";
+    }
+    function showIndicator1(){
+        indicator1.style.opacity = "1";
+    }
+
+    list.forEach((item) => item.addEventListener('click', activator));
+    list1.forEach((item) => item.addEventListener('click', activator));
+    indicator.forEach((item) => item.addEventListener('click', activator));
+    indicator1.forEach((item) => item.addEventListener('click', activator));
+</script>
+
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+</html>
